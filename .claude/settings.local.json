@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 \"C:/Users/Kory/.claude/skills/banana/scripts/validate_setup.py\")",
+      "Bash(python3 *)",
+      "Bash(Get-Content *)",
+      "Bash(Start-Sleep -Seconds 65)",
+      "Bash(python *)",
+      "Bash(pip install *)"
+    ]
+  }
+}

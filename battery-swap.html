@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mobile battery replacement in DuPage County. Dead battery? Parente Mobile Mechanics comes to you — home, office, or parking lot.">
+  <title>Battery Swap | Parente Mobile Mechanics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; font-weight: 400; color: #222; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    .btn-amber {
+      display: inline-block;
+      background: #d4a017;
+      color: #111;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.78rem 2.25rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: background 0.2s ease-out, transform 0.15s ease-out, box-shadow 0.2s ease-out;
+    }
+    .btn-amber:hover {
+      background: #e6b825;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(212,160,23,0.38);
+    }
+    .btn-amber:active { transform: scale(0.97); }
+
+    /* NAV */
+    #nav {
+      background: #111;
+      padding: 0.9rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.55rem; }
+    .nav-logo svg { flex-shrink: 0; }
+    .nav-logo-text {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #fff;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .nav-links { list-style: none; display: flex; gap: 2rem; }
+    .nav-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.03em;
+      transition: color 0.2s ease-out;
+    }
+    .nav-links a:hover { color: #fff; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.3s ease-out, opacity 0.2s ease-out;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: #111;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .mobile-nav a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      padding: 0.85rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: color 0.2s ease-out;
+    }
+    .mobile-nav a:last-child { border-bottom: none; }
+    .mobile-nav a:hover { color: #fff; }
+    .mobile-nav.open { display: flex; }
+
+    /* HERO */
+    .sp-hero {
+      position: relative;
+      width: 100%;
+      min-height: 420px;
+      background-color: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .sp-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+    }
+    .sp-hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 1.5rem;
+    }
+    .sp-hero-title {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      line-height: 1.1;
+    }
+
+    /* ALTERNATING ROWS */
+    .sp-row {
+      display: flex;
+      align-items: stretch;
+      width: 100%;
+    }
+    .sp-img-block {
+      flex: 0 0 60%;
+      min-height: 420px;
+      background-color: #2a2a2a;
+      background-size: cover;
+      background-position: center;
+    }
+    .sp-text-block {
+      flex: 0 0 40%;
+      background: #ffffff;
+      padding: 5rem 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.3rem;
+    }
+    .sp-text-block h2 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.55rem, 2.8vw, 2.2rem);
+      color: #111;
+      line-height: 1.25;
+    }
+    .sp-text-block p {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.78;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0d0d0d;
+      padding: 1.75rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+      letter-spacing: 0.07em;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .footer-links { list-style: none; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s ease-out;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.85); }
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.28); }
+
+    /* RESPONSIVE */
+    @media (max-width: 820px) {
+      .sp-row { flex-direction: column; }
+      .sp-img-block { flex: none; width: 100%; min-height: 280px; }
+      .sp-text-block { flex: none; width: 100%; padding: 3rem 1.75rem; }
+    }
+    @media (max-width: 620px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .sp-hero { min-height: 260px; }
+      .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      #nav { padding: 0.75rem 1.1rem; }
+      .sp-text-block { padding: 2.5rem 1.25rem; }
+      .sp-img-block { min-height: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M3 10H19M3 10L5 5H17L19 10M3 10V12H5V10M19 10V12H17V10M6 7H16" stroke="#d4a017" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="5.5" cy="11.5" r="1.5" fill="#d4a017"/>
+      <circle cx="16.5" cy="11.5" r="1.5" fill="#d4a017"/>
+    </svg>
+    <span class="nav-logo-text">Parente Mobile Mechanics</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#reviews">Recent Jobs</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <a href="index.html">Home</a>
+  <a href="index.html#services">Services</a>
+  <a href="index.html#reviews">Recent Jobs</a>
+  <a href="index.html#about">About</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<section class="sp-hero">
+  <div class="sp-hero-overlay"></div>
+  <div class="sp-hero-content">
+    <h1 class="sp-hero-title">Battery Swap</h1>
+  </div>
+</section>
+
+<div class="sp-row">
+  <div class="sp-text-block">
+    <h2>Mobile Battery Replacement</h2>
+    <p>Dead battery? Don't get stranded. Call Parente Mobile Mechanics and we'll come to wherever you are in DuPage County — home, office, or parking lot — and get you running again fast.</p>
+    <a href="contact.html" class="btn-amber">Book Now</a>
+  </div>
+  <div class="sp-img-block" style="background-image:url('battery-1.jpg');"></div>
+</div>
+
+<div class="sp-row">
+  <div class="sp-img-block" style="background-image:url('battery-2.jpg');"></div>
+  <div class="sp-text-block">
+    <h2>Same-Day Service Available</h2>
+    <p>We carry common battery sizes for most makes and models. We test your charging system while we're there to make sure the alternator isn't the real problem, so you're not replacing parts you don't need.</p>
+    <a href="contact.html" class="btn-amber">Book Now</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <svg width="20" height="13" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M3 10H19M3 10L5 5H17L19 10M3 10V12H5V10M19 10V12H17V10M6 7H16" stroke="#d4a017" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="5.5" cy="11.5" r="1.5" fill="#d4a017"/>
+        <circle cx="16.5" cy="11.5" r="1.5" fill="#d4a017"/>
+      </svg>
+      Parente Mobile Mechanics
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="preventive-maintenance.html">Preventive Maintenance</a></li>
+      <li><a href="before-road-trip.html">Road-Trip Checkup</a></li>
+      <li><a href="top-off-fluids.html">Top Off Fluids</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2025 Parente Mobile Mechanics. Wheaton, IL &amp; DuPage County.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+  var open = false;
+  btn.addEventListener('click', function () {
+    open = !open;
+    btn.classList.toggle('open', open);
+    mobileNav.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    mobileNav.setAttribute('aria-hidden', String(!open));
+  });
+  mobileNav.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      open = false;
+      btn.classList.remove('open');
+      mobileNav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      mobileNav.setAttribute('aria-hidden', 'true');
+    });
+  });
+}());
+</script>
+</body>
+</html>
